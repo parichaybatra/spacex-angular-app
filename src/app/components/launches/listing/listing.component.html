@@ -1,0 +1,52 @@
+<div class="row content">
+  <!-- * * Case: no data fetch from API * * -->
+  <div class="col-12" *ngIf="!programs.length">
+    <div class="card h-100 bg-white mx-1 p-2">
+      <h2 class="text-center">No data found</h2>
+    </div>
+  </div>
+  <!-- * * Case: First time load febore API call * * -->
+  <div class="col-12 mb-2" *ngIf="programs[0] == 'start'; else card">
+    <div class="card h-100 bg-white mx-1 p-2">
+      <h2 class="text-center">Please wait....</h2>
+    </div>
+  </div>
+  <!-- * * Case: data found after API call* * -->
+  <ng-template #card>
+    <div
+      class="col-12 col-md-6 col-lg-3 mb-2"
+      *ngFor="let item of programs; let i = index"
+    >
+      <div class="card h-100 bg-white mx-1 p-2">
+        <img
+          class="bg-gray"
+          [alt]="item.mission_name"
+          [defaultImage]="defaultImage"
+          [lazyLoad]="item.links?.mission_patch_small"
+        />
+        <h2 class="text-blue mt-1">
+          {{ item.mission_name }} # {{ item.flight_number }}
+        </h2>
+        <h3>Mission Ids:</h3>
+        <ul *ngFor="let mid of item.mission_id; let i = index">
+          <li>{{ mid }}</li>
+        </ul>
+        <h4>
+          Launch Year: <span>{{ item.launch_year }}</span>
+        </h4>
+        <h4>
+          Successful Launch: <span>{{ item.launch_success }}</span>
+        </h4>
+        <h4>
+          Successful Landing:
+          <span
+            title="{{
+              item.launch_landing ? item.launch_landing : 'Record not available'
+            }}"
+            >{{ item.launch_landing ? item.launch_landing : "-NA-" }}</span
+          >
+        </h4>
+      </div>
+    </div>
+  </ng-template>
+</div>

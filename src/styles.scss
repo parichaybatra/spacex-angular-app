@@ -1,0 +1,273 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+$sx-gray: #f2f2f2;
+$sx-blue: #2f5496;
+$sx-green: #7cba01;
+$sx-light-green: #c5e09b;
+$sx-lightest-green: #d1dcc1;
+$sx-white: #fff;
+$sx-black: #000;
+$header-height: 50px;
+
+$theme-colors: (
+  "blue": $sx-blue,
+  "green": $sx-green,
+  "light-green": $sx-light-green,
+  "gray": $sx-gray,
+  "white": $sx-white,
+  "black": $sx-black,
+);
+
+@each $color, $value in $theme-colors {
+  .text-#{$color} {
+    color: $value;
+  }
+  .bg-#{$color} {
+    background-color: $value;
+  }
+}
+// Custom Global Style Start
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 5px 0;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $header-height;
+  display: flex;
+}
+
+.container {
+  max-width: 1440px;
+  padding: 12px;
+  margin: 0 auto;
+}
+.main {
+  margin-top: $header-height;
+}
+.sticky-container {
+  position: sticky;
+  top: 60px;
+}
+.sidebar,
+.card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+}
+.sidebar {
+  margin: 1rem 1rem 1rem 0.5rem;
+}
+.sidebar h2 {
+  text-align: left;
+  margin: 0;
+}
+.sidebar h4 {
+  font-weight: 500;
+  border-bottom: 2px solid #ccc;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  padding: 10px 0px;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.card img {
+  width: 100%;
+  max-height: 238px;
+}
+.card ul {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  color: $sx-blue;
+  padding-left: 2rem;
+}
+.card h2 {
+  font-size: 1.17em;
+}
+.card h3 {
+  color: $sx-black;
+}
+.card h4 span {
+  color: $sx-blue;
+  font-size: initial;
+  font-weight: initial;
+}
+h1.title {
+  font-size: 20px;
+  margin-left: 2rem;
+}
+.btn {
+  padding: 0.3rem 1rem;
+  margin: 0.6rem auto;
+  border-radius: 6px;
+  background-color: $sx-light-green;
+  border: 1px solid $sx-lightest-green;
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+.btn.active,
+.btn:hover,
+.btn :focus {
+  background-color: #7cba01;
+  outline: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+.text-center {
+  text-align: center;
+}
+.clear-filter {
+  float: right;
+}
+.clear-filter img {
+  width: 23px;
+}
+.h-100 {
+  height: 100%;
+}
+.mt-0 {
+  margin-top: 0 !important;
+}
+.mt-1 {
+  margin-top: 0.5rem !important;
+}
+.mb-2 {
+  margin-bottom: 1rem !important;
+}
+.mb-3 {
+  margin-bottom: 1rem;
+}
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+.mx-1 {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+.p-2 {
+  padding: 1rem !important;
+}
+
+// Custom Global Style End
+
+$number-columns: 12;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  $i: 1;
+  @while $i <= $number-columns {
+    $perc: unquote((100 / ($number-columns / $i)) + "%");
+    .col-#{$i} {
+      max-width: $perc;
+      flex-basis: $perc !important;
+    }
+    $i: $i + 1;
+  }
+}
+@media (min-width: 700px) and (max-width: 1023px) {
+  .row {
+    $i: 1;
+    @while $i <= $number-columns {
+      $perc: unquote((100 / ($number-columns / $i)) + "%");
+      .col-md-#{$i} {
+        max-width: $perc;
+        flex-basis: $perc !important;
+      }
+      $i: $i + 1;
+    }
+  }
+  h1.title {
+    font-size: 17px;
+    margin: 1rem 0 1rem 1rem;
+  }
+  .h4 {
+    width: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .row {
+    $i: 1;
+    @while $i <= $number-columns {
+      $perc: unquote((100 / ($number-columns / $i)) + "%");
+      .col-lg-#{$i} {
+        max-width: $perc;
+        flex-basis: $perc !important;
+      }
+      $i: $i + 1;
+    }
+  }
+  .sidebar {
+    margin: 1.3rem;
+  }
+  .sidebar h4 {
+    width: 164px;
+  }
+}
+@media (max-width: 700px) {
+  header {
+    position: relative;
+    height: auto;
+    display: flex;
+  }
+  .main {
+    margin-top: 0;
+  }
+  .sticky-container {
+    position: relative;
+    top: 0px;
+  }
+  .card img {
+    max-height: inherit;
+  }
+  h1.title {
+    font-size: 1.4rem;
+    margin: 0rem 0.7rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+  .btn {
+    padding: 0.5rem 1rem;
+  }
+  .sidebar h4 {
+    width: 164px;
+  }
+  .right-panel {
+    margin-top: 1rem;
+  }
+  .spinner {
+    left: 37%;
+  }
+  .pt-xs-0 {
+    padding-top: 0 !important;
+  }
+  .mt-xs-0 {
+    margin-top: 0 !important;
+  }
+}
